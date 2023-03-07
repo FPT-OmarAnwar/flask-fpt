@@ -29,5 +29,5 @@ stages:
               containerRegistry: 'Docker Hub-omaranwarorbispay'
               repository: 'omaranwarorbispay/azure-flask-fpt'
               command: 'buildAndPush'
-              Dockerfile: '.'
+              Dockerfile: './'
               tags: $(Build.BuildId)
