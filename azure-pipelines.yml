@@ -1,0 +1,33 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+name : Docker-CI-GitHub(flask-fpt)-image-to-DockerHub
+
+trigger:
+  branches:
+    include:
+      - master
+
+pool:
+  vmImage: ubuntu-latest
+
+
+variables:
+  ImageName: 'omaranwarorbispay/azure-flask-fpt:$(Build.BuildId)'
+
+stages:
+  - stage: Build
+    displayName: Build and push image to Docker Hub
+    jobs:
+      - job: DockerImage
+        displayName: Build and push Docker Image
+        steps:
+          - task: Docker@2
+            inputs:
+              containerRegistry: 'Docker Hub-omaranwarorbispay'
+              repository: 'omaranwarorbispay/azure-flask-fpt'
+              command: 'buildAndPush'
+              Dockerfile: '.'
+              tags: $(Build.BuildId)
