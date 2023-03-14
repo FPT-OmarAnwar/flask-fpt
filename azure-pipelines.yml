@@ -17,17 +17,27 @@ pool:
 variables:
   ImageName: 'omaranwarorbispay/azure-flask-fpt:$(Build.BuildId)'
 
-stages:
-  - stage: Build
-    displayName: Build and push image to Docker Hub
-    jobs:
-      - job: DockerImage
-        displayName: Build and push Docker Image
-        steps:
-          - task: Docker@2
-            inputs:
-              containerRegistry: 'Docker Hub-omaranwarorbispay'
-              repository: 'omaranwarorbispay/azure-flask-fpt'
-              command: 'buildAndPush'
-              Dockerfile: '**/Dockerfile'
-              tags: $(Build.BuildId)
+steps:
+  - task: Docker@2
+    displayName: Docker image build and push
+    inputs:
+      containerRegistry: 'Docker Hub-omaranwarorbispay'
+      repository: 'omaranwarorbispay/azure-flask-fpt'
+      command: 'buildAndPush'
+      Dockerfile: '**/Dockerfile'
+      tags: $(Build.BuildId)
+
+  # stages:
+#   - stage: Build
+#     displayName: Build and push image to Docker Hub
+#     jobs:
+#       - job: DockerImage
+#         displayName: Build and push Docker Image
+#         steps:
+#           - task: Docker@2
+#             inputs:
+#               containerRegistry: 'Docker Hub-omaranwarorbispay'
+#               repository: 'omaranwarorbispay/azure-flask-fpt'
+#               command: 'buildAndPush'
+#               Dockerfile: '**/Dockerfile'
+#               tags: $(Build.BuildId)
