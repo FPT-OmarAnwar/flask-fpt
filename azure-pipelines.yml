@@ -25,7 +25,9 @@ steps:
       repository: 'omaranwarorbispay/azure-flask-fpt'
       command: 'buildAndPush'
       Dockerfile: '**/Dockerfile'
-      tags: $(Build.BuildId)
+      tags: |
+        $(Build.BuildId)
+        latest
 
   # stages:
 #   - stage: Build
