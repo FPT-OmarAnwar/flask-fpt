@@ -28,7 +28,7 @@ steps:
       tags: |
         $(Build.BuildId)
         latest
-
+# trying to see if latest is replaced
   # stages:
 #   - stage: Build
 #     displayName: Build and push image to Docker Hub
