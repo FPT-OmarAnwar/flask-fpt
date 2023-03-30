@@ -1,8 +1,8 @@
 name: flask-fpt
 
 on: 
-#   push:
-#     branches: [main]
+  push:
+    branches: [main]
     
 jobs:
   build:
@@ -16,4 +16,13 @@ jobs:
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-        
+
+    - name: docker image build and push
+      uses: docker/build-push-action@v4
+      env:
+        image_name: flask-fpt
+      with:
+        context: .
+        file: ./Dockerfile
+        push: true
+        tags: ${{ secrets.DOCKER_USERNAME }}/$(image_name):${{github.run_number}}
