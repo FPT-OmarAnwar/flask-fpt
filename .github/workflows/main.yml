@@ -29,8 +29,19 @@ jobs:
         push: true
         tags: ${{ secrets.DOCKER_USERNAME }}/${{env.image_name}}:${{github.run_number}}
 
-    - name: Deploying new image - CD part
-      run: |
-        ssh ${{ secrets.AWS_SERVER_KEY }} ubuntu@ec2-3-235-240-203.compute-1.amazonaws.com "cd /home/ubuntu/docker-test && bash flask-fpt.sh ${{env.image_name}} ${{github.run_number}} ${{ secrets.DOCKER_USERNAME }}"
+    - name: SSH to instance and running script
+      uses: appleboy/ssh-action@v0.1.8
+      with:
+        host: ec2-3-235-240-203.compute-1.amazonaws.com
+        username: ubuntu
+        key: ${{ secrets.AWS_SERVER_KEY }}
+        port: 22
+        script: |
+          cd /home/ubuntu/docker-test
+          bash flask-fpt.sh ${{env.image_name}} ${{github.run_number}} ${{ secrets.DOCKER_USERNAME }}
+
+    # - name: Deploying new image - CD part
+    #   run: |
+    #     ssh ${{ secrets.AWS_SERVER_KEY }} ubuntu@ec2-3-235-240-203.compute-1.amazonaws.com "cd /home/ubuntu/docker-test && bash flask-fpt.sh ${{env.image_name}} ${{github.run_number}} ${{ secrets.DOCKER_USERNAME }}"
 
 
