@@ -19,7 +19,7 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
-    - name: docker image build and push
+    - name: docker image build and push - CI part
       uses: docker/build-push-action@v4
       env:
         image_name: flask-fpt
@@ -28,5 +28,9 @@ jobs:
         file: ./Dockerfile
         push: true
         tags: ${{ secrets.DOCKER_USERNAME }}/${{env.image_name}}:${{github.run_number}}
+
+    - name: Deploying new image - CD part
+      run: |
+        ssh -i #{{ secrets.AWS_SERVER_KEY }} ubuntu@ec2-3-235-240-203.compute-1.amazonaws.com "cd /home/ubuntu/docker-test && bash flask-fpt.sh ${{env.image_name}} ${{github.run_number}} ${{ secrets.DOCKER_USERNAME }}"
 
 
