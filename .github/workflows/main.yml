@@ -43,6 +43,7 @@ jobs:
 
 
 
+
     # - name: Deploying new image - CD part
     #   run: |
     #     ssh ${{ secrets.AWS_SERVER_KEY }} ubuntu@ec2-3-235-240-203.compute-1.amazonaws.com "cd /home/ubuntu/docker-test && bash flask-fpt.sh ${{env.image_name}} ${{github.run_number}} ${{ secrets.DOCKER_USERNAME }}"
