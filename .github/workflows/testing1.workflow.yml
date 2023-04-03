@@ -2,9 +2,8 @@ name: flask-fpt
 
 on: 
   push:
-    branches: 
-      - master
-
+    branches:
+      - testing1
 env:
   image_name: flask-fpt
 
