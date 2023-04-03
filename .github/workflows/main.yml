@@ -40,18 +40,18 @@ jobs:
         script: |
           cd /home/ubuntu/docker-test && bash flask-fpt.sh ${{env.image_name}} ${{github.run_number}} ${{secrets.DOCKER_USERNAME}}
 
-    - name: manual approval
-      uses: trstringer/manual-approval@v1
-      with:
-        secret: ${{ secrets.GITHUB_TOKEN }}
-        # secret: ${{ github.TOKEN }}
-        approvers: omaranwarorbispay
-        minimum-approvals: 1
-        issue-title: "Deploying ${{env.image_name}}:${{github.run_number}}"
-        issue-body: "Please approve or deny the deployment"
-        exclude-workflow-initiator-as-approver: false
-        additional-approved-words: ''
-        additional-denied-words: ''
+    # - name: manual approval
+    #   uses: trstringer/manual-approval@v1
+    #   with:
+    #     secret: ${{ secrets.GITHUB_TOKEN }}
+    #     # secret: ${{ github.TOKEN }}
+    #     approvers: omaranwarorbispay
+    #     minimum-approvals: 1
+    #     issue-title: "Deploying ${{env.image_name}}:${{github.run_number}}"
+    #     issue-body: "Please approve or deny the deployment"
+    #     exclude-workflow-initiator-as-approver: false
+    #     additional-approved-words: ''
+    #     additional-denied-words: ''
 
 
 
