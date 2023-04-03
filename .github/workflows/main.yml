@@ -43,7 +43,7 @@ jobs:
     - name: manual approval
       uses: trstringer/manual-approval@v1
       with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        secret: ${{ secrets.GITHUB_TOKEN }}
         # secret: ${{ github.TOKEN }}
         approvers: omaranwarorbispay
         minimum-approvals: 1
