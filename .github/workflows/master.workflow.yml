@@ -14,6 +14,17 @@ jobs:
     
     steps:
     - uses: actions/checkout@v3
+    
+    - uses: trstringer/manual-approval@v1
+      with:
+        secret: ${{ github.TOKEN }}
+        approvers: FPT-OmarAnwar
+        minimum-approvals: 1
+        issue-title: "Testing deployment"
+        issue-body: "Please approve or deny the deployment with yes/no"
+        exclude-workflow-initiator-as-approver: false
+        additional-approved-words: ''
+        additional-denied-words: ''
 
     - name: Login to Docker Hub
       uses: docker/login-action@v2
