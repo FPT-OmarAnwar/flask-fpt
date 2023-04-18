@@ -32,6 +32,7 @@ jobs:
         username: ${{secrets.DOCKER_USERNAME}}
         password: ${{secrets.DOCKER_PASSWORD}}
 
+
     # - name: docker image build and push - CI part
     #   uses: docker/build-push-action@v4
     #   with:
