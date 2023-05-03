@@ -17,6 +17,7 @@ jobs:
     
     - uses: trstringer/manual-approval@v1
       id: manual_approve
+      continue-on-error: true
       with:
         secret: ${{ github.TOKEN }}
         approvers: FPT-OmarAnwar
