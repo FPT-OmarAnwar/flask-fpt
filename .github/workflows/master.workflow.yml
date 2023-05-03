@@ -40,7 +40,7 @@ jobs:
       with:
         github-token: ${{ github.token }} # this will use the runner's token.
         ms-teams-webhook-uri: ${{ secrets.QA_DEPLOYMENT_MS_TEAMS_WEBHOOK }}
-        notification-summary: Pipeline completed with status steps.manual_approve.outcome 
+        notification-summary: Pipeline completed with status ${{ steps.manual_approve.outcome }}
         notification-color: 17a2b8
         timezone: Asia/Karachi
     
