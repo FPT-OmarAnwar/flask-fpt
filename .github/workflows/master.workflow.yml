@@ -35,16 +35,15 @@ jobs:
         password: ${{secrets.DOCKER_PASSWORD}}
         
     - name: Ms Teams notification
-      if: steps.manual_approve.outcome == 'success'
+      #if: steps.manual_approve.outcome == 'success'
       uses: jdcargile/ms-teams-notification@v1.3
       with:
         github-token: ${{ github.token }} # this will use the runner's token.
         ms-teams-webhook-uri: ${{ secrets.QA_DEPLOYMENT_MS_TEAMS_WEBHOOK }}
-        notification-summary: Pipeline completed with status 'success' 
+        notification-summary: Pipeline completed with status steps.manual_approve.outcome 
         notification-color: 17a2b8
         timezone: Asia/Karachi
-
-
+    
 
     # - name: docker image build and push - CI part
     #   uses: docker/build-push-action@v4
